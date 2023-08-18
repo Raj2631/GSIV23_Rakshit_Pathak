@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Movies } from "./types";
+import { PopularMoviesResponse } from "./types";
 
 export const moviesApi = createApi({
   reducerPath: "moviesApi",
@@ -13,8 +13,18 @@ export const moviesApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    getPopularMovies: builder.query<Movies, number>({
+    getPopularMovies: builder.query<PopularMoviesResponse, number>({
       query: (page = 1) => `/movie/popular?language=en-US&page=${page}`,
+      serializeQueryArgs: ({ endpointName }) => {
+        return endpointName;
+      },
+      merge: (currentCache, newItems) => {
+        currentCache.page = newItems.page;
+        currentCache.results.push(...newItems.results);
+      },
+      forceRefetch({ currentArg, previousArg }) {
+        return currentArg !== previousArg;
+      },
     }),
   }),
 });

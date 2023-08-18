@@ -16,3 +16,10 @@ export interface Movie {
 }
 
 export type Movies = Movie[];
+
+export interface PopularMoviesResponse {
+  page: number;
+  total_pages: number;
+  total_results: number;
+  results: Movies;
+}
