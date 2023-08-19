@@ -3,6 +3,7 @@ import "./App.css";
 import { useGetPopularMoviesQuery } from "./services/movies";
 import InfiniteScroll from "react-infinite-scroll-component";
 import MovieCard from "./components/MovieCard";
+import { Movie } from "./services/types";
 
 function App() {
   const [page, setPage] = useState(1);
@@ -22,7 +23,7 @@ function App() {
         }
       >
         <div className="flex items-center justify-center flex-wrap gap-7">
-          {data?.results.map((movie) => (
+          {data?.results?.map((movie: Movie) => (
             <MovieCard movie={movie} key={movie.id} />
           ))}
         </div>

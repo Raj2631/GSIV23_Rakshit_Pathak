@@ -1,5 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Movie, PopularMoviesResponse } from "./types";
+import {
+  Casts,
+  Movie,
+  MovieCreditsResponse,
+  PopularMoviesResponse,
+} from "./types";
 
 export const moviesApi = createApi({
   reducerPath: "moviesApi",
@@ -14,7 +19,7 @@ export const moviesApi = createApi({
   }),
   endpoints: (builder) => ({
     getPopularMovies: builder.query<PopularMoviesResponse, number>({
-      query: (page = 1) => `/movie/popular?language=en-US&page=${page}`,
+      query: (page = 1) => `/movie/popular?page=${page}`,
       serializeQueryArgs: ({ endpointName }) => {
         return endpointName;
       },
@@ -26,10 +31,19 @@ export const moviesApi = createApi({
         return currentArg !== previousArg;
       },
     }),
-    getMovieById: builder.query<Movie, string>({
+    getMovieById: builder.query<Movie, string | number>({
       query: (movieId) => `/movie/${movieId}?language=en-US`,
+    }),
+    getMovieCredits: builder.query<Casts, string | number>({
+      query: (movieId) => `/movie/${movieId}/credits`,
+      transformResponse: (response: MovieCreditsResponse) =>
+        response.cast.slice(0, 5),
     }),
   }),
 });
 
-export const { useGetPopularMoviesQuery, useGetMovieByIdQuery } = moviesApi;
+export const {
+  useGetPopularMoviesQuery,
+  useGetMovieByIdQuery,
+  useGetMovieCreditsQuery,
+} = moviesApi;

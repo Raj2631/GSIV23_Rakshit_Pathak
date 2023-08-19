@@ -4,8 +4,8 @@ import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
   const location = useLocation();
-  console.log(location);
   const isMovieDetailPage = location.pathname.startsWith("/movieDetail");
+
   return (
     <div className="h-14 border-b-2 border-gray-300 shadow-header bg-white  fixed top-0 inset-x-0 flex justify-between items-center">
       <div className="flex justify-between items-center w-full mx-6 gap-6">
