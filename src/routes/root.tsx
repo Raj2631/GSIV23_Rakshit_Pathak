@@ -3,12 +3,12 @@ import Header from "../components/Header";
 
 const Root = () => {
   return (
-    <div>
+    <>
       <Header />
-      <div className="mt-16">
+      <div className="mt-24">
         <Outlet />
       </div>
-    </div>
+    </>
   );
 };
 

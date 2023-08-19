@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { PopularMoviesResponse } from "./types";
+import { Movie, PopularMoviesResponse } from "./types";
 
 export const moviesApi = createApi({
   reducerPath: "moviesApi",
@@ -26,7 +26,10 @@ export const moviesApi = createApi({
         return currentArg !== previousArg;
       },
     }),
+    getMovieById: builder.query<Movie, string>({
+      query: (movieId) => `/movie/${movieId}?language=en-US`,
+    }),
   }),
 });
 
-export const { useGetPopularMoviesQuery } = moviesApi;
+export const { useGetPopularMoviesQuery, useGetMovieByIdQuery } = moviesApi;
