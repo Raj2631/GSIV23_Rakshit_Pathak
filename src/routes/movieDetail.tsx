@@ -5,15 +5,24 @@ import {
 } from "../services/movies";
 import { ImgBaseURL } from "../utils/constants";
 import { Cast } from "../services/types";
+import Error from "../components/Error";
 
 const MovieDetail = () => {
   const { movieId } = useParams();
-  const { data: movie, isLoading } = useGetMovieByIdQuery(String(movieId));
+  const {
+    data: movie,
+    error,
+    isLoading,
+  } = useGetMovieByIdQuery(String(movieId));
   const { data: castAndDirectorData, isLoading: isCastLoading } =
     useGetMovieCreditsQuery(String(movieId));
 
   if (isLoading || isCastLoading) {
     return <h1 className="text-center">Loading...</h1>;
+  }
+
+  if (error) {
+    return <Error />;
   }
 
   const releasedYear = movie?.release_date?.split("-")[0];

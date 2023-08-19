@@ -8,9 +8,6 @@ const Search = () => {
   const [searchInputText, setSearchInputText] = useState("");
   const dispatch = useAppDispatch();
   const debouncedValue = useDebounce(searchInputText, 500);
-  // const isTyping = useAppSelector(
-  //   (state: RootState) => state.searchInput.isTyping
-  // );
 
   useEffect(() => {
     dispatch(setSearchValue(debouncedValue));
