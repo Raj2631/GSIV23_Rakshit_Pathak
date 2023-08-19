@@ -4,19 +4,21 @@ import {
   useGetMovieCreditsQuery,
 } from "../services/movies";
 import { ImgBaseURL } from "../utils/constants";
+import { Cast } from "../services/types";
 
 const MovieDetail = () => {
   const { movieId } = useParams();
   const { data: movie, isLoading } = useGetMovieByIdQuery(String(movieId));
-  const { data: cast, isLoading: isCastLoading } = useGetMovieCreditsQuery(
-    String(movieId)
-  );
+  const { data: castAndDirectorData, isLoading: isCastLoading } =
+    useGetMovieCreditsQuery(String(movieId));
 
   if (isLoading || isCastLoading) {
     return <h1 className="text-center">Loading...</h1>;
   }
 
   const releasedYear = movie?.release_date?.split("-")[0];
+  const director = castAndDirectorData?.director;
+  const cast = castAndDirectorData?.cast.slice(0, 5);
 
   return (
     <div className="flex flex-col xl:flex-row justify-center gap-6 m-5 max-w-screen-2xl  px-5 mx-auto">
@@ -35,11 +37,11 @@ const MovieDetail = () => {
         </h1>
         <div className="text-gray-600 font-semibold my-2">
           <div>
-            {releasedYear} / {movie?.runtime}mins
+            {releasedYear} / {movie?.runtime}mins / {director}
           </div>
           <div>
             Cast:{" "}
-            {cast?.map((actor, i) => (
+            {cast?.map((actor: Cast, i: number) => (
               <span key={actor.id}>
                 {actor.name}
                 {i !== cast.length - 1 && ", "}

@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import {
-  Casts,
+  CastsAndDirector,
   Movie,
   MovieCreditsResponse,
   PopularMoviesResponse,
@@ -34,10 +34,23 @@ export const moviesApi = createApi({
     getMovieById: builder.query<Movie, string | number>({
       query: (movieId) => `/movie/${movieId}?language=en-US`,
     }),
-    getMovieCredits: builder.query<Casts, string | number>({
+    getMovieCredits: builder.query<CastsAndDirector, string | number>({
       query: (movieId) => `/movie/${movieId}/credits`,
-      transformResponse: (response: MovieCreditsResponse) =>
-        response.cast.slice(0, 5),
+      transformResponse: (response: MovieCreditsResponse) => {
+        return {
+          cast: response.cast.slice(0, 5),
+          director:
+            response.crew.find((person) => person.job === "Director")?.name ??
+            "No Director found",
+        };
+      },
+    }),
+    getMoviesByTitle: builder.query<
+      PopularMoviesResponse,
+      { title: string; page: number }
+    >({
+      query: ({ title, page = 1 }) =>
+        `/search/movie?language=en-US&query=${title}&page=${page}`,
     }),
   }),
 });
@@ -46,4 +59,5 @@ export const {
   useGetPopularMoviesQuery,
   useGetMovieByIdQuery,
   useGetMovieCreditsQuery,
+  useGetMoviesByTitleQuery,
 } = moviesApi;

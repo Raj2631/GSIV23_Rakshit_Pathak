@@ -1,5 +1,5 @@
 import { Home } from "lucide-react";
-import Search from "./Search";
+import Search from "../features/Search/Search";
 import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {

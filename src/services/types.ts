@@ -57,5 +57,8 @@ export interface MovieCreditsResponse {
   cast: Cast[];
 }
 
+export interface CastsAndDirector {
+  cast: Cast[];
+  director: string;
+}
 export type Movies = Movie[];
-export type Casts = Cast[];

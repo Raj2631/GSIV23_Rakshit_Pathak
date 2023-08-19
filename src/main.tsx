@@ -6,7 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./routes/root.tsx";
 import ErrorPage from "./error-page.tsx";
 import MovieDetail from "./routes/movieDetail.tsx";
-import App from "./App.tsx";
+import Home from "./routes/home.tsx";
 
 const router = createBrowserRouter([
   {
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <App />,
+        element: <Home />,
       },
       {
         path: "movieDetail/:movieId",

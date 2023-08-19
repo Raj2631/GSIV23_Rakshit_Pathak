@@ -1,20 +1,24 @@
 import { useState } from "react";
-import "./App.css";
-import { useGetPopularMoviesQuery } from "./services/movies";
+import { useGetPopularMoviesQuery } from "../services/movies";
+import Loading from "./Loading";
 import InfiniteScroll from "react-infinite-scroll-component";
-import MovieCard from "./components/MovieCard";
-import { Movie } from "./services/types";
+import MovieCard from "./MovieCard";
+import { Movie } from "../services/types";
 
-function App() {
+const MoviesList = () => {
   const [page, setPage] = useState(1);
-  const { data } = useGetPopularMoviesQuery(page);
+  const { data, isLoading } = useGetPopularMoviesQuery(page);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <>
       <InfiniteScroll
         dataLength={data?.results?.length ?? 0}
         next={() => setPage((prev) => prev + 1)}
-        hasMore={true}
+        hasMore={(data?.page ?? 0) < (data?.total_pages ?? 0)}
         loader={<h4 className="text-center my-2">Loading...</h4>}
         endMessage={
           <p className="text-center">
@@ -30,6 +34,6 @@ function App() {
       </InfiniteScroll>
     </>
   );
-}
+};
 
-export default App;
+export default MoviesList;
