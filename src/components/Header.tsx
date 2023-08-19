@@ -1,13 +1,15 @@
-import React from "react";
 import { Home } from "lucide-react";
 import Search from "./Search";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <div className="h-14 border-b-2 border-gray-300 shadow-header  fixed top-0 inset-x-0 flex justify-between items-center">
+    <div className="h-14 border-b-2 border-gray-300 shadow-header bg-white  fixed top-0 inset-x-0 flex justify-between items-center">
       <div className="flex justify-between items-center w-full mx-6 ">
         <Search />
-        <Home strokeWidth={3} className="text-gray-500" />
+        <Link to="/">
+          <Home strokeWidth={3} className="text-gray-500 cursor-pointer" />
+        </Link>
       </div>
     </div>
   );

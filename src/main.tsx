@@ -4,11 +4,25 @@ import { store } from "./app/store";
 import { Provider } from "react-redux";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./routes/root.tsx";
+import ErrorPage from "./error-page.tsx";
+import MovieDetail from "./routes/movieDetail.tsx";
+import App from "./App.tsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        index: true,
+        element: <App />,
+      },
+      {
+        path: "movieDetail/:movieId",
+        element: <MovieDetail />,
+      },
+    ],
   },
 ]);
 
