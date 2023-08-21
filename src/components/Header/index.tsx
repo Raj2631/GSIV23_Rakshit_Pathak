@@ -1,5 +1,5 @@
-import { Home } from "lucide-react";
-import Search from "../features/Search/Search";
+import Search from "../../features/Search/Search";
+import HomeIcon from "../../assets/homeIcon.svg";
 import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
@@ -15,7 +15,9 @@ const Header = () => {
           <Search />
         )}
         <Link to="/">
-          <Home strokeWidth={3} className="text-gray-500 cursor-pointer " />
+          <div className="text-gray-500 cursor-pointer">
+            <img src={HomeIcon} alt="home-icon" />
+          </div>
         </Link>
       </div>
     </div>

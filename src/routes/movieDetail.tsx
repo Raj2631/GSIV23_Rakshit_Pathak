@@ -35,6 +35,7 @@ const MovieDetail = () => {
         <img
           src={`${ImgBaseURL}/${movie?.poster_path}`}
           className="h-80 md:h-auto md:w-80 shadow-xl"
+          alt={movie?.title}
         />
       </div>
       <div className="flex flex-col gap-1 text-left xl:w-7/12 ">
@@ -60,7 +61,7 @@ const MovieDetail = () => {
         </div>
 
         <div className="text-gray-800 font-medium text-lg ">
-          Description: {movie?.overview}
+          Description: {movie?.overview || "No description available."}
         </div>
       </div>
     </div>

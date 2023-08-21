@@ -23,11 +23,16 @@ const SearchPage = () => {
     return <Error />;
   }
 
+  if (data?.results?.length === 0) {
+    return (
+      <p className="text-center my-10">
+        <b>No movies found!</b>
+      </p>
+    );
+  }
+
   return (
     <>
-      <h4 className="text-center my-2">
-        <MoreHorizontal className="text-gray-800" size={34} />
-      </h4>
       <InfiniteScroll
         dataLength={data?.results?.length ?? 0}
         next={() => setPage((prev) => prev + 1)}

@@ -1,0 +1,181 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Search Input component > Renders search result when input changes 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="relative flex-grow max-w-sm bg-gray-300  rounded-xl"
+      >
+        <form
+          class=" flex items-center bg-darkPurple rounded-full"
+        >
+          <svg
+            class="ml-2 text-gray-500"
+            fill="none"
+            height="20"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="3"
+            viewBox="0 0 24 24"
+            width="20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="11"
+              cy="11"
+              r="8"
+            />
+            <path
+              d="m21 21-4.3-4.3"
+            />
+          </svg>
+          <input
+            class="p-1.5 border-none outline-none bg-transparent font-semibold flex-grow"
+            placeholder="Search"
+            type="text"
+            value="test"
+          />
+        </form>
+      </div>
+    </div>
+    <div>
+      <div>
+        <div
+          class="w-60 h-[444px] rounded-lg cursor-pointer overflow-hidden shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px]"
+        >
+          <a
+            href="/movieDetail/226979"
+          >
+            <img
+              alt="Test"
+              class="w-full h-[360px] bg-black bg-cover"
+              src="https://image.tmdb.org/t/p/w500//tTWRomgIMOoIB3CJLPlVbqSawEm.jpg"
+            />
+            <div
+              class=" py-2 px-2"
+            >
+              <div
+                class="flex items-center  justify-between text-sm"
+              >
+                <div
+                  class="w-24 truncate text-left font-semibold"
+                >
+                  Test
+                </div>
+                <div
+                  class="text-gray-400"
+                >
+                  (
+                  6.685
+                  )
+                </div>
+              </div>
+              <div
+                class="w-full text-sm text-left my-1 text-gray-500 line-clamp-2"
+              >
+                San Francisco, 1985. Two opposites attract at a modern dance company. Together, their courage and resilience are tested as they navigate a world full of risks and promise, against the backdrop of a disease no one seems to know anything about.
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div>
+      <div
+        class="w-60 h-[444px] rounded-lg cursor-pointer overflow-hidden shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px]"
+      >
+        <a
+          href="/movieDetail/226979"
+        >
+          <img
+            alt="Test"
+            class="w-full h-[360px] bg-black bg-cover"
+            src="https://image.tmdb.org/t/p/w500//tTWRomgIMOoIB3CJLPlVbqSawEm.jpg"
+          />
+          <div
+            class=" py-2 px-2"
+          >
+            <div
+              class="flex items-center  justify-between text-sm"
+            >
+              <div
+                class="w-24 truncate text-left font-semibold"
+              >
+                Test
+              </div>
+              <div
+                class="text-gray-400"
+              >
+                (
+                6.685
+                )
+              </div>
+            </div>
+            <div
+              class="w-full text-sm text-left my-1 text-gray-500 line-clamp-2"
+            >
+              San Francisco, 1985. Two opposites attract at a modern dance company. Together, their courage and resilience are tested as they navigate a world full of risks and promise, against the backdrop of a disease no one seems to know anything about.
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { Movie } from "../services/types";
-import { ImgBaseURL } from "../utils/constants";
+import { Movie } from "../../services/types";
+import { ImgBaseURL } from "../../utils/constants";
 
 type Props = {
   movie: Movie;
@@ -15,6 +15,7 @@ const MovieCard = ({ movie }: Props) => {
           key={movie.id}
           src={`${ImgBaseURL}/${movie.poster_path}`}
           className="w-full h-[360px] bg-black bg-cover"
+          alt={movie?.title}
         />
         <div className=" py-2 px-2">
           <div className="flex items-center  justify-between text-sm">
