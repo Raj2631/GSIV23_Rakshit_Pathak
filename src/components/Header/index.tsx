@@ -1,5 +1,5 @@
 import Search from "../../features/Search/Search";
-import HomeIcon from "../../assets/homeIcon.svg";
+import HomeIcon from "../../assets/HomeIcon.svg";
 import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
