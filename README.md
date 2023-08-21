@@ -14,6 +14,14 @@ yarn install
 npm install
 ```
 
+Then, setup the environment variables:
+
+```bash
+# Create a file .env.local at the root of the project and add these env variables.
+VITE_MOVIEDB_API = https://api.themoviedb.org/3
+VITE_MOVIEDB_TOKEN = YOUR_MOVIEDB_TOKEN
+```
+
 Then, run the development server:
 
 ```bash
