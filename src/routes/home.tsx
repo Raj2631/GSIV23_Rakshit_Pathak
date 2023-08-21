@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useAppSelector } from "../app/hooks";
 import Loading from "../components/Loading";
 import MoviesList from "../components/MoviesList";
@@ -11,22 +11,24 @@ const Home = () => {
   const searchValue = useAppSelector((state) => state.searchInput.value);
   const [searchMovie, { data, error, isLoading }] =
     useLazyGetMoviesByTitleQuery();
-  const [page, setPage] = useState(1);
-
-  const debouncedValue = useDebounce(searchValue, 500);
+  const debouncedValue = useDebounce(searchValue, 1000);
 
   useEffect(() => {
     if (debouncedValue) {
       searchMovie({
         title: debouncedValue,
-        page,
+        page: 1,
       });
     }
-  }, [debouncedValue, page, searchMovie]);
+  }, [debouncedValue, searchMovie]);
 
   const incrementPage = () => {
-    setPage((prev) => prev + 1);
+    searchMovie({
+      title: debouncedValue,
+      page: data?.page ? data?.page + 1 : 1,
+    });
   };
+
   if (error) {
     return <Error />;
   }

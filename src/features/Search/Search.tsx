@@ -6,7 +6,6 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 const Search = () => {
   const dispatch = useAppDispatch();
   const searchValue = useAppSelector((state) => state.searchInput.value);
-
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(setSearchValue(e.target.value));
   };

@@ -22,7 +22,7 @@ const SearchPage = ({ data, incrementPage }: Props) => {
       <InfiniteScroll
         dataLength={data?.results?.length ?? 0}
         next={incrementPage}
-        hasMore={(data?.page ?? 0) < (data?.total_pages ?? 0)}
+        hasMore={(data?.page ?? 1) < (data?.total_pages ?? 1)}
         loader={
           <div className="flex items-center justify-center my-2">
             <MoreHorizontal className="text-gray-800" size={34} />
