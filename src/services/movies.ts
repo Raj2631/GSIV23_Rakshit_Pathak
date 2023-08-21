@@ -69,5 +69,5 @@ export const {
   useGetPopularMoviesQuery,
   useGetMovieByIdQuery,
   useGetMovieCreditsQuery,
-  useGetMoviesByTitleQuery,
+  useLazyGetMoviesByTitleQuery,
 } = moviesApi;

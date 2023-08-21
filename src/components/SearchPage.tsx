@@ -1,28 +1,14 @@
-import { useState } from "react";
-import { useGetMoviesByTitleQuery } from "../services/movies";
-import Loading from "./Loading";
 import InfiniteScroll from "react-infinite-scroll-component";
 import MovieCard from "./MovieCard";
-import { useAppSelector } from "../app/hooks";
 import { MoreHorizontal } from "lucide-react";
-import Error from "./Error";
+import { MoviesResponse } from "../services/types";
 
-const SearchPage = () => {
-  const [page, setPage] = useState(1);
-  const searchText = useAppSelector((state) => state.searchInput.value);
-  const { data, error, isLoading } = useGetMoviesByTitleQuery({
-    title: searchText,
-    page,
-  });
+type Props = {
+  data: MoviesResponse;
+  incrementPage: () => void;
+};
 
-  if (isLoading) {
-    return <Loading />;
-  }
-
-  if (error) {
-    return <Error />;
-  }
-
+const SearchPage = ({ data, incrementPage }: Props) => {
   if (data?.results?.length === 0) {
     return (
       <p className="text-center my-10">
@@ -35,7 +21,7 @@ const SearchPage = () => {
     <>
       <InfiniteScroll
         dataLength={data?.results?.length ?? 0}
-        next={() => setPage((prev) => prev + 1)}
+        next={incrementPage}
         hasMore={(data?.page ?? 0) < (data?.total_pages ?? 0)}
         loader={
           <div className="flex items-center justify-center my-2">

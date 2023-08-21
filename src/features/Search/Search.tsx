@@ -1,25 +1,18 @@
-import { useEffect, useState, ChangeEvent } from "react";
+import { ChangeEvent } from "react";
 import { SearchIcon, XIcon } from "lucide-react";
-import { useDebounce } from "../../hooks/useDebounce";
-import { setSearchValue, startTyping } from "./SearchSlice";
-import { useAppDispatch } from "../../app/hooks";
+import { setSearchValue } from "./SearchSlice";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 
 const Search = () => {
-  const [searchInputText, setSearchInputText] = useState("");
   const dispatch = useAppDispatch();
-  const debouncedValue = useDebounce(searchInputText, 500);
-
-  useEffect(() => {
-    dispatch(setSearchValue(debouncedValue));
-  }, [debouncedValue, dispatch]);
+  const searchValue = useAppSelector((state) => state.searchInput.value);
 
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(startTyping());
-    setSearchInputText(e.target.value);
+    dispatch(setSearchValue(e.target.value));
   };
 
   const clearInput = () => {
-    setSearchInputText("");
+    dispatch(setSearchValue(""));
   };
 
   return (
@@ -35,10 +28,10 @@ const Search = () => {
           type="text"
           placeholder="Search"
           className="p-1.5 border-none outline-none bg-transparent font-semibold flex-grow"
-          value={searchInputText}
+          value={searchValue}
           onChange={onInputChange}
         />
-        {searchInputText && (
+        {searchValue && (
           <button onClick={clearInput}>
             <XIcon size="18" className=" text-gray-500 mx-4" />
           </button>
