@@ -1,7 +1,7 @@
 import { useEffect, useState, ChangeEvent } from "react";
 import { SearchIcon, XIcon } from "lucide-react";
 import { useDebounce } from "../../hooks/useDebounce";
-import { setSearchValue } from "./SearchSlice";
+import { setSearchValue, startTyping } from "./SearchSlice";
 import { useAppDispatch } from "../../app/hooks";
 
 const Search = () => {
@@ -14,6 +14,7 @@ const Search = () => {
   }, [debouncedValue, dispatch]);
 
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch(startTyping());
     setSearchInputText(e.target.value);
   };
 

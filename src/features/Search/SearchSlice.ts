@@ -3,12 +3,12 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 export interface SearchInputState {
   value: string;
-  isTyping: boolean;
+  hasUserStartedTyping: boolean;
 }
 
 const initialState: SearchInputState = {
   value: "",
-  isTyping: false,
+  hasUserStartedTyping: false,
 };
 
 export const SearchSlice = createSlice({
@@ -17,15 +17,15 @@ export const SearchSlice = createSlice({
   reducers: {
     setSearchValue: (state, action: PayloadAction<string>) => {
       state.value = action.payload;
-      state.isTyping = false;
+      state.hasUserStartedTyping = false;
     },
 
-    setIsTyping: (state, action: PayloadAction<boolean>) => {
-      state.isTyping = action.payload;
+    startTyping: (state) => {
+      state.hasUserStartedTyping = true;
     },
   },
 });
 
-export const { setSearchValue, setIsTyping } = SearchSlice.actions;
+export const { setSearchValue, startTyping } = SearchSlice.actions;
 
 export default SearchSlice.reducer;

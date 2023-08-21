@@ -3,7 +3,7 @@ import {
   CastsAndDirector,
   Movie,
   MovieCreditsResponse,
-  PopularMoviesResponse,
+  MoviesResponse,
 } from "./types";
 
 export const moviesApi = createApi({
@@ -18,7 +18,7 @@ export const moviesApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    getPopularMovies: builder.query<PopularMoviesResponse, number>({
+    getPopularMovies: builder.query<MoviesResponse, number>({
       query: (page = 1) => `/movie/popular?page=${page}`,
       serializeQueryArgs: ({ endpointName }) => {
         return endpointName;
@@ -46,11 +46,21 @@ export const moviesApi = createApi({
       },
     }),
     getMoviesByTitle: builder.query<
-      PopularMoviesResponse,
+      MoviesResponse,
       { title: string; page: number }
     >({
       query: ({ title, page = 1 }) =>
         `/search/movie?language=en-US&query=${title}&page=${page}`,
+      serializeQueryArgs: ({ endpointName, ...rest }) => {
+        return endpointName + rest.queryArgs.title;
+      },
+      merge: (currentCache, newItems) => {
+        currentCache.page = newItems.page;
+        currentCache.results.push(...newItems.results);
+      },
+      forceRefetch({ currentArg, previousArg }) {
+        return currentArg !== previousArg;
+      },
     }),
   }),
 });
