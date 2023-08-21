@@ -1,5 +1,5 @@
 import { useEffect, useState, ChangeEvent } from "react";
-import { SearchIcon } from "lucide-react";
+import { SearchIcon, XIcon } from "lucide-react";
 import { useDebounce } from "../../hooks/useDebounce";
 import { setSearchValue } from "./SearchSlice";
 import { useAppDispatch } from "../../app/hooks";
@@ -15,6 +15,10 @@ const Search = () => {
 
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchInputText(e.target.value);
+  };
+
+  const clearInput = () => {
+    setSearchInputText("");
   };
 
   return (
@@ -33,6 +37,11 @@ const Search = () => {
           value={searchInputText}
           onChange={onInputChange}
         />
+        {searchInputText && (
+          <button onClick={clearInput}>
+            <XIcon size="18" className=" text-gray-500 mx-4" />
+          </button>
+        )}
       </form>
     </div>
   );

@@ -6,6 +6,7 @@ import {
 import { ImgBaseURL } from "../utils/constants";
 import { Cast } from "../services/types";
 import Error from "../components/Error";
+import { convertMinsToHHMM } from "../utils/utils";
 
 const MovieDetail = () => {
   const { movieId } = useParams();
@@ -28,6 +29,7 @@ const MovieDetail = () => {
   const releasedYear = movie?.release_date?.split("-")[0];
   const director = castAndDirectorData?.director;
   const cast = castAndDirectorData?.cast.slice(0, 5);
+  const runTime = convertMinsToHHMM(movie?.runtime || 0);
 
   return (
     <div className="flex flex-col xl:flex-row justify-center gap-6 m-5 max-w-screen-2xl  px-5 mx-auto">
@@ -47,7 +49,7 @@ const MovieDetail = () => {
         </h1>
         <div className="text-gray-600 font-semibold my-2">
           <div>
-            {releasedYear} / {movie?.runtime}mins / {director}
+            {releasedYear} / {runTime} / {director}
           </div>
           <div>
             Cast:{" "}
